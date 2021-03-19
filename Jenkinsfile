@@ -7,6 +7,7 @@ node {
     }
 
     stage('Build image') {
+        sh 'sudo chmod 777 /var/run/docker.sock'
         app = docker.build("jdvalera/project1")
     }
 
