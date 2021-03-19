@@ -31,8 +31,8 @@ node {
     }
 
     stage('Run image') {
-            sh 'docker container stop $(docker ps -a -q)'
-            sh 'docker rm -f $(docker ps -a -q)'
+            sh 'docker ps -f name=web-app -q | xargs --no-run-if-empty docker container stop'
+            sh 'docker container ls -a -fname=web-app -q | xargs -r docker container rm'
             image.run('-p 80:80 --name web-app')
     }
 }
