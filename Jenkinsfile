@@ -33,7 +33,7 @@ node {
     stage('Run image') {
             sh 'docker container stop $(docker ps -a -q)'
             sh 'docker rm -f $(docker ps -a -q)'
-            sh "docker images -a | grep "project1" | awk '{print $3}' | xargs docker rmi"
+            sh "docker images -a | grep 'project1' | awk '{print $3}' | xargs docker rmi"
             image.run('-p 80:80 --name web-app')
     }
 }
